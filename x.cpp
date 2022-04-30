@@ -15,7 +15,9 @@ int main()
          if(keys[i].length()==keys[j].length())
          {
             string x=keys[i];
+            sort(x.begin(),x.end());
             string y=keys[j];
+            sort(y.begin(),y.end());
             if(x==y)
             {
                //cout<<x<<" "<<y;
