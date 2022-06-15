@@ -2,6 +2,12 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+If you want to use bootstrap you have to execute command(for bootstrap dependancy) in terminal - npm install --save bootstrap
+or npm install --save bootstrap@latest
+ 
+
+
+
 ## Available Scripts
 
 In the project directory, you can run:
