@@ -1,4 +1,3 @@
----
 - hosts: 127.0.0.1 
   strategy: debug
   tasks: 
@@ -21,8 +20,18 @@
       register: f
       when: result.failed
     - debug:
-        var: f.stdout
-      when: result.failed
-    - debug:
         var: tmp.stdout
-      when: result.status== 200
+    - name: send notification to Teams channel
+      uri: 
+        url: "webhook url"
+        method: POST
+        body_format: json
+        body:
+          title: "Daily Health Check"
+          text: {{ tmp.stdout }}
+          sections:
+            - facts:
+                - name: "{{ component_x  }}"
+                  value: "{{ tmp.stdout  }}"
+                - name: "{{ abc  }}"
+                  value: "{{ xyz  }}"
