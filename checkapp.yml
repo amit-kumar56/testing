@@ -1,0 +1,24 @@
+---
+- hosts: 127.0.0.1 
+  strategy: debug
+  tasks: 
+    - name: "wait for website to come up"
+      uri:
+        url: "http://localhost:8079"
+        status_code: 200
+      register: result
+      #until: result.status == 204
+      #retry: 1
+      #delay: 10
+      no_log: false
+      ignore_errors: yes
+    - name: run when success
+      shell: echo {{ result }}
+      register: tmp
+      when: result.status== 200
+    - name: run when failed
+      shell: echo "fail"
+      register: f
+      when: result.failed
+    - debug:
+        var: tmp.stdout
